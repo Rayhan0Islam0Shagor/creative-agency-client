@@ -1,38 +1,51 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.brand-btn{
+  background-color: #111430;
+  width: 130px;
   color: white;
+  font-weight: 600;
+}
+.brand-btn:hover{
+  background-color: rgb(112, 240, 240);
+  font-weight: 600;
+}
+.navLink{
+  font-weight: 600;
+}
+.home{
+  background-color: #FBD062;
+  clip-path: polygon(0 0, 100% 0%, 100% 84%, 0% 100%);
+}
+.services{
+  height: 50px;
+}
+.custom-card{
+  border: 1px solid gray;
+  border-radius: 10px;
+  height: 300px;
+  overflow: hidden;
+}
+.custom-card:hover{
+  box-shadow: 5px 5px 30px gray;
+  transition: all ease-in-out 0.2s;
+
+}
+.custom-section{
+  padding: 50px 0;
+  height: auto;
+  background-color: #111430;
 }
 
-.App-link {
-  color: #61dafb;
+.footer{
+  background-color: #FBD062;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-style{
+  color: #111430;
+  font-weight: 700;
+  border-bottom: 3px solid rgb(2, 221, 46);
+}
+
+.dashboard{
+  color: rgb(2, 221, 46);
+  font-weight: 600;
 }
