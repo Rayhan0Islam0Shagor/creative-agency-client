@@ -13,14 +13,24 @@ import { UserContext } from '../../../App';
 const Sidebar = () => {
     const history = useHistory()
     const { userInfo } = useContext(UserContext);
-
     const [loggedInUser, setLoggedInUser] = userInfo;
 
+    const parseJwt = (token) => {
+        try {
+            return (JSON.parse(atob(token.split('.')[1])))
+        } catch (e) {
+            return (false);
+        }
+    };
+    const info = sessionStorage.getItem('token')
+    const loggedUser = parseJwt(info)
+
+    const adminEmail = (loggedInUser.email || loggedUser.email);
+
     useEffect(() => {
-        fetch(`http://localhost:5000/isAdmin?email=${loggedInUser.email}`)
+        fetch(`http://localhost:5000/isAdmin?email=${adminEmail}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.length > 0) {
                     const admin = { ...loggedInUser };
                     admin.setUser = true;
@@ -33,6 +43,10 @@ const Sidebar = () => {
                 }
             })
     }, [])
+
+
+
+
 
     const handleLoggedOut = () => {
         firebase.auth()
@@ -50,7 +64,7 @@ const Sidebar = () => {
 
 
     return (
-        <div className="sidebar d-flex flex-column justify-content-between col-md-2 py-5 px-4" style={{ height: "100vh" }}>
+        <div className="sidebar d-flex flex-column justify-content-between col-md-3 py-5 px-4" style={{ height: "100vh" }}>
             <ul className="list-unstyled font-weight-bold">
                 <li className="mb-5">
                     <Link to='/home'>
@@ -62,12 +76,12 @@ const Sidebar = () => {
                         <div>
                             <li className="mb-3">
                                 <NavLink activeClassName="nav-style" to='/adminPenal' className="text-dark">
-                                    <FontAwesomeIcon icon={faServer} /> <span>Service list</span>
+                                    <FontAwesomeIcon icon={faServer} /><span>Service list</span>
                                 </NavLink>
                             </li>
                             <li className="mb-3">
                                 <NavLink activeClassName="nav-style" to="/addService" className="text-dark">
-                                    <FontAwesomeIcon icon={faPlus} /> <span>Add Service</span>
+                                    <FontAwesomeIcon icon={faPlus} /><span>Add Service</span>
                                 </NavLink>
                             </li>
                             <li className="mb-3">
@@ -94,7 +108,6 @@ const Sidebar = () => {
                                 </NavLink>
                             </li>
                         </div>
-
                 }
             </ul>
             <div>

@@ -33,7 +33,6 @@ const Login = () => {
             })
             .catch(error => {
                 const errorMessage = error.message;
-                console.log(errorMessage);
             });
     }
 

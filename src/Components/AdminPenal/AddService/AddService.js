@@ -25,7 +25,6 @@ const AddService = () => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 if (data) {
                     toast.success('Service Added successfully')
                 }

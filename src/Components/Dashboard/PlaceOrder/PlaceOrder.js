@@ -45,7 +45,6 @@ const OrderList = () => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 if (data) {
                     toast.success('Order Added successfully')
                 }
