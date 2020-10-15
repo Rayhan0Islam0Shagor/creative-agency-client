@@ -45,9 +45,7 @@ const Sidebar = () => {
     }, [])
 
 
-
-
-
+    // not working, need to clear token from application console
     const handleLoggedOut = () => {
         firebase.auth()
             .signOut()
@@ -60,7 +58,6 @@ const Sidebar = () => {
 
             });
     }
-
 
 
     return (
