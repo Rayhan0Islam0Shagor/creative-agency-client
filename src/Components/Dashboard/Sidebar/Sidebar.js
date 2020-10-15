@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink, useHistory, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faServer, faCommentAlt, faSignOutAlt, faUserPlus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../../images/logos/logo.png';
@@ -13,19 +13,27 @@ import { UserContext } from '../../../App';
 const Sidebar = () => {
     const history = useHistory()
     const { userInfo } = useContext(UserContext);
+
     const [loggedInUser, setLoggedInUser] = userInfo;
-    const parseJwt = (token) => {
-        try {
-            return (JSON.parse(atob(token.split('.')[1])))
-        } catch (e) {
-            return (false);
-        }
-    };
-    const info = sessionStorage.getItem('token')
-    const loggedUser = parseJwt(info)
-    if (firebase.apps.length === 0) {
-        firebase.initializeApp(firebaseConfig);
-    }
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/isAdmin?email=${loggedInUser.email}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.length > 0) {
+                    const admin = { ...loggedInUser };
+                    admin.setUser = true;
+                    setLoggedInUser(admin)
+                }
+                else {
+                    const admin = { ...loggedInUser };
+                    admin.setUser = false;
+                    setLoggedInUser(admin)
+                }
+            })
+    }, [])
+
     const handleLoggedOut = () => {
         firebase.auth()
             .signOut()
@@ -38,6 +46,9 @@ const Sidebar = () => {
 
             });
     }
+
+
+
     return (
         <div className="sidebar d-flex flex-column justify-content-between col-md-2 py-5 px-4" style={{ height: "100vh" }}>
             <ul className="list-unstyled font-weight-bold">
@@ -46,44 +57,93 @@ const Sidebar = () => {
                         <img height="50px" src={logo} alt="" />
                     </Link>
                 </li>
-                <li className="mb-3">
-                    <NavLink activeClassName="nav-style" to='/customerDashboard' className="text-dark">
-                        <FontAwesomeIcon icon={faShoppingCart} /> <span>Order</span>
-                    </NavLink>
-                </li>
-                <li className="mb-3">
-                    <NavLink activeClassName="nav-style" to="/serviceList" className="text-dark">
-                        <FontAwesomeIcon icon={faServer} /> <span>Service List</span>
-                    </NavLink>
-                </li>
-                <li className="mb-3">
-                    <NavLink to="/review" activeClassName="nav-style" className="text-dark">
-                        <FontAwesomeIcon icon={faCommentAlt} /> <span>Review</span>
-                    </NavLink>
-                </li>
-                <li className="mb-3">
-                    <NavLink activeClassName="nav-style" to="/adminPenal" className="text-dark">
-                        <FontAwesomeIcon icon={faServer} /> <span>Service list</span>
-                    </NavLink>
-                </li>
-                <li className="mb-3">
-                    <NavLink activeClassName="nav-style" to="/addService" className="text-dark">
-                        <FontAwesomeIcon icon={faPlus} /> <span>Add Service</span>
-                    </NavLink>
-                </li>
-                <li className="mb-3">
-                    <NavLink activeClassName="nav-style" to="/addAdmin" className="text-dark">
-                        <FontAwesomeIcon icon={faUserPlus} /> <span>Make Admin</span>
-                    </NavLink>
-                </li>
+                {
+                    loggedInUser.setUser ?
+                        <div>
+                            <li className="mb-3">
+                                <NavLink activeClassName="nav-style" to='/adminPenal' className="text-dark">
+                                    <FontAwesomeIcon icon={faServer} /> <span>Service list</span>
+                                </NavLink>
+                            </li>
+                            <li className="mb-3">
+                                <NavLink activeClassName="nav-style" to="/addService" className="text-dark">
+                                    <FontAwesomeIcon icon={faPlus} /> <span>Add Service</span>
+                                </NavLink>
+                            </li>
+                            <li className="mb-3">
+                                <NavLink activeClassName="nav-style" to="/addAdmin" className="text-dark">
+                                    <FontAwesomeIcon icon={faUserPlus} /> <span>Make Admin</span>
+                                </NavLink>
+                            </li>
+                        </div>
+                        :
+                        <div>
+                            <li className="mb-3">
+                                <NavLink activeClassName="nav-style" to='/customerDashboard' className="text-dark">
+                                    <FontAwesomeIcon icon={faShoppingCart} /> <span>Order</span>
+                                </NavLink>
+                            </li>
+                            <li className="mb-3">
+                                <NavLink activeClassName="nav-style" to="/serviceList" className="text-dark">
+                                    <FontAwesomeIcon icon={faServer} /> <span>Service List</span>
+                                </NavLink>
+                            </li>
+                            <li className="mb-3">
+                                <NavLink to="/review" activeClassName="nav-style" className="text-dark">
+                                    <FontAwesomeIcon icon={faCommentAlt} /> <span>Review</span>
+                                </NavLink>
+                            </li>
+                        </div>
+
+                }
             </ul>
             <div>
                 <button onClick={handleLoggedOut} className="btn brand-btn">
                     <FontAwesomeIcon onClick={handleLoggedOut} icon={faSignOutAlt} /> log out
                 </button>
             </div>
-        </div>
+        </div >
     );
 };
 
 export default Sidebar;
+
+
+
+
+
+//     <div className="my-5">
+//         <li>
+//             <Link to="/serviceList" className="text-secondary">
+//                 <FontAwesomeIcon icon={faHdd} /> <span>Service list admin</span>
+//             </Link>
+//         </li>
+//         <li>
+//             <Link to="/addService" className="text-secondary">
+//                 <FontAwesomeIcon icon={faPlus} /> <span>Add Service</span>
+//             </Link>
+//         </li>
+//         <li>
+//             <Link to="/mainAdmin" className="text-secondary" >
+//                 <FontAwesomeIcon icon={faUserPlus} /> <span>Make Admin</span>
+//             </Link>
+//         </li>
+//     </div>
+//         :
+//     <div>
+//         <li>
+//             <Link to="/order" className="text-secondary">
+//                 <FontAwesomeIcon icon={faShoppingCart} /> <span>Order</span>
+//             </Link>
+//         </li>
+//         <li>
+//             <Link to="/serviceListO" className="text-secondary">
+//                 <FontAwesomeIcon icon={faHdd} /> <span>Service list user</span>
+//             </Link>
+//         </li>
+//         <li>
+//             <Link to="/review" className="text-secondary">
+//                 <FontAwesomeIcon icon={faCommentDots} /> <span>Review</span>
+//             </Link>
+//         </li>
+//     </div>

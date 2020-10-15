@@ -18,7 +18,7 @@ const AddAdmin = () => {
             .then(res => res.json())
             .then(success => {
                 if (success) {
-                    alert('admin added')
+                    alert('success')
                 }
             })
     }
@@ -31,8 +31,7 @@ const AddAdmin = () => {
             <div className="col-md-10 col-sm-12">
                 <DashboardHeader title={'Add an Admin'} />
                 <form style={{ borderRadius: "10px" }} className="w-75 bg-secondary p-5 d-flex" onSubmit={handleSubmit(onSubmit)}>
-                    <input className="form-control" name="email" placeholder="Make sure admin email" ref={register({ required: true })} />
-                    {errors.email && <span className="text-danger">email is required</span>}
+                    <input required className="form-control" name="email" placeholder="Make sure admin email" ref={register({ required: true })} />
                     <br />
                     <input className="btn btn-success" value="send" type="submit" />
                 </form>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import googleImg from '../../../images/logos/googlelogo.png'
 import * as firebase from "firebase/app";
@@ -16,15 +16,13 @@ const Login = () => {
     const [loggedInUser, setLoggedInUser] = userInfo;
     const history = useHistory();
     const location = useLocation();
-    const { from } = location.state || { from: { pathname: "/serviceList" } };
-
+    const { from } = location.state || { from: { pathname: loggedInUser ? '/adminPenal' : '/customerDashboard' } };
     if (firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);
     }
 
     const handleGoogleSignIn = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
-
         firebase.auth().signInWithPopup(provider)
             .then(result => {
                 const { displayName, email, photoURL } = result.user;

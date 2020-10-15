@@ -1,6 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { css } from "@emotion/core";
+import { FadeLoader } from 'react-spinners';
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 const AllServiceTable = () => {
     const [allService, setAllService] = useState([])
@@ -22,6 +30,15 @@ const AllServiceTable = () => {
                     <th colspan="1">Action</th>
                 </tr>
             </thead>
+            {
+                allService.length === 0 &&
+                <FadeLoader
+                    className="d-flex justify-content-center"
+                    css={override}
+                    size={150}
+                    color={"#0f3057"}
+                />
+            }
             {
                 allService.map(user =>
                     <tbody>

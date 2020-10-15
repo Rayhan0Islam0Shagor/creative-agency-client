@@ -26,6 +26,7 @@ function App() {
     category: ''
   });
 
+
   return (
     <UserContext.Provider value={{ userInfo: [loggedInUser, setLoggedInUser] }}>
       <Router>
@@ -43,25 +44,25 @@ function App() {
             <PlaceOrder />
           </PrivateRoute>
 
-          <Route path='/serviceList'>
+          <PrivateRoute path='/serviceList'>
             <CustomerServices />
-          </Route>
+          </PrivateRoute>
 
-          <Route path='/review'>
+          <PrivateRoute path='/review'>
             <UserReview />
-          </Route>
+          </PrivateRoute>
 
-          <Route path='/adminPenal'>
+          <PrivateRoute path='/adminPenal'>
             <ListedService />
-          </Route>
+          </PrivateRoute>
 
-          <Route path='/addService'>
+          <PrivateRoute path='/addService'>
             <AddService />
-          </Route>
+          </PrivateRoute>
 
-          <Route path='/addAdmin'>
+          <PrivateRoute path='/addAdmin'>
             <AddAdmin />
-          </Route>
+          </PrivateRoute>
 
           <Route path='/login'>
             <Login />

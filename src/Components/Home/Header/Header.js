@@ -1,7 +1,6 @@
 import React from 'react';
 import HeaderMain from '../HeaderMain/HeaderMain';
 import Navbar from '../Navbar/Navbar';
-import ServiceInfo from '../ServicePartner/ServicePartner';
 
 const Header = () => {
     return (
