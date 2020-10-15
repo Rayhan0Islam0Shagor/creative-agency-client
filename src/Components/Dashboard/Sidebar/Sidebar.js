@@ -28,7 +28,7 @@ const Sidebar = () => {
     const adminEmail = (loggedInUser.email || loggedUser.email);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/isAdmin?email=${adminEmail}`)
+        fetch(`https://infinite-mesa-16282.herokuapp.com/isAdmin?email=${adminEmail}`)
             .then(res => res.json())
             .then(data => {
                 if (data.length > 0) {

@@ -39,7 +39,7 @@ const OrderList = () => {
         formData.append('price', data.price);
         formData.append('image', image);
 
-        fetch('http://localhost:5000/addOrder', {
+        fetch('https://infinite-mesa-16282.herokuapp.com/addOrder', {
             method: 'POST',
             body: formData
         })
@@ -61,7 +61,7 @@ const OrderList = () => {
             </div>
             <div className="col-md-10 col-sm-12">
                 <DashboardHeader title={'Order'} />
-                <div style={{ backgroundColor: "#E5E5E5", height: "100vh" }}>
+                <div style={{ backgroundColor: "#E5E5E5", paddingBottom: "100px" }}>
                     <form className="w-50 p-5" onSubmit={handleSubmit(onSubmit)}>
                         <input className="form-control" defaultValue={(loggedInUser.name || loggedUser.name)} required name="name" placeholder="Your Name/ Company Name" ref={register()} />
                         <br />

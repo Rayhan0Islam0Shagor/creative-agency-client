@@ -15,7 +15,7 @@ const AllServiceTable = () => {
     const [allService, setAllService] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/allService')
+        fetch('https://infinite-mesa-16282.herokuapp.com/allService')
             .then(res => res.json())
             .then(data => setAllService(data))
     }, [allService])

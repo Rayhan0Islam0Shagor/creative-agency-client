@@ -19,7 +19,7 @@ const Services = () => {
     }, [])
 
     const loadData = async () => {
-        await fetch('http://localhost:5000/products')
+        await fetch('https://infinite-mesa-16282.herokuapp.com/products')
             .then(res => res.json())
             .then(data => {
                 setProducts(data)

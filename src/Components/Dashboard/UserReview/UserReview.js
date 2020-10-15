@@ -27,7 +27,7 @@ const UserReview = () => {
         useReview.email = (loggedInUser.email || loggedUser.email)
         useReview.photo = (loggedInUser.photoURL || loggedUser.picture)
 
-        fetch('http://localhost:5000/addReview', {
+        fetch('https://infinite-mesa-16282.herokuapp.com/addReview', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

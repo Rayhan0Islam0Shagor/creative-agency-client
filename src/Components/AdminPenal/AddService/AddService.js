@@ -19,7 +19,7 @@ const AddService = () => {
         formData.append('description', data.description);
         formData.append('image', image);
 
-        fetch('http://localhost:5000/addProduct', {
+        fetch('https://infinite-mesa-16282.herokuapp.com/addProduct', {
             method: 'POST',
             body: formData
         })

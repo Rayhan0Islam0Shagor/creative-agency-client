@@ -37,7 +37,7 @@ const CustomerServices = () => {
     const userEmail = (loggedInUser.email || loggedUser.email)
 
     const service = async () => {
-        await fetch('http://localhost:5000/orders?email=' + userEmail)
+        await fetch('https://infinite-mesa-16282.herokuapp.com/orders?email=' + userEmail)
             .then(res => res.json())
             .then(data => {
                 setOrder(data)
