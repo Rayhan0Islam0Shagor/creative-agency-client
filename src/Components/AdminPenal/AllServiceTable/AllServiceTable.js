@@ -41,13 +41,13 @@ const AllServiceTable = () => {
             }
             {
                 allService.map(user =>
-                    <tbody>
+                    <tbody key={Math.random()}>
                         <tr>
-                            <th colspan="5">{user.name}</th>
-                            <td colspan="2">{user.email}</td>
-                            <td colspan="1">{user.service}</td>
-                            <td colspan="3">{user.description.substring(0, 40) + '...'}</td>
-                            <td colspan="1">
+                            <th colSpan="5">{user.name}</th>
+                            <td colSpan="2">{user.email}</td>
+                            <td colSpan="1">{user.service}</td>
+                            <td colSpan="3">{user.description.substring(0, 40) + '...'}</td>
+                            <td colSpan="1">
                                 <button className="btn btn-danger">
                                     done
                         </button>
