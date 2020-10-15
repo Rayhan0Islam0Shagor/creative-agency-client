@@ -5,7 +5,7 @@ import CustomerSingleService from '../CustomerSingleService/CustomerSingleServic
 import { useContext } from 'react';
 import { UserContext } from '../../../App';
 import { css } from "@emotion/core";
-import { BounceLoader } from 'react-spinners';
+import { CircleLoader } from 'react-spinners';
 
 const override = css`
   display: block;
@@ -24,8 +24,20 @@ const CustomerServices = () => {
         service()
     }, [order])
 
+    const parseJwt = (token) => {
+        try {
+            return (JSON.parse(atob(token.split('.')[1])))
+        } catch (e) {
+            return (false);
+        }
+    };
+    const info = sessionStorage.getItem('token')
+    const loggedUser = parseJwt(info)
+
+    const userEmail = (loggedInUser.email || loggedUser.email)
+
     const service = async () => {
-        await fetch('http://localhost:5000/orders?email=' + loggedInUser.email)
+        await fetch('http://localhost:5000/orders?email=' + userEmail)
             .then(res => res.json())
             .then(data => {
                 setOrder(data)
@@ -42,7 +54,7 @@ const CustomerServices = () => {
                 <div style={{ backgroundColor: "#E5E5E5", paddingBottom: "100px" }} className="row ">
                     {
                         order.length === 0 &&
-                        <BounceLoader
+                        <CircleLoader
                             css={override}
                             size={70}
                             color={"#0278ae"}

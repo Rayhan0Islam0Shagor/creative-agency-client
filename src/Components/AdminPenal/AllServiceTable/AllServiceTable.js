@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { css } from "@emotion/core";
 import { FadeLoader } from 'react-spinners';
+import { Link } from 'react-router-dom';
 
 const override = css`
   display: block;
@@ -48,9 +49,18 @@ const AllServiceTable = () => {
                             <td colSpan="1">{user.service}</td>
                             <td colSpan="3">{user.description.substring(0, 40) + '...'}</td>
                             <td colSpan="1">
-                                <button className="btn btn-danger">
-                                    done
-                        </button>
+
+                                <div class="dropdown">
+                                    <Link class="btn btn-success dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Done
+                                    </Link>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <Link class="dropdown-item" href="#">pending</Link>
+                                        <Link class="dropdown-item" href="#">Done</Link>
+                                        <Link class="dropdown-item" href="#">cancel</Link>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

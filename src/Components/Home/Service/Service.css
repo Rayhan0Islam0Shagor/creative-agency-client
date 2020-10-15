@@ -1,0 +1,13 @@
+.custom-card{
+    border: 1px solid gray;
+    border-radius: 10px;
+    height: 300px;
+    overflow: hidden;
+    transform: scale(0.9);
+    transition: all 0.7s ease;
+}
+.custom-card:hover{
+    transform: scale(1);
+    box-shadow: 5px 5px 30px gray;
+    transition: all ease-in-out 0.5s;
+}

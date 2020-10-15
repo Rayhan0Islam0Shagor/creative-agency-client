@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Service.css'
 
 const Service = ({ service }) => {
     return (
@@ -9,7 +10,7 @@ const Service = ({ service }) => {
                     <img height="74px" width="74px" src={`data:image/png;base64,${service.image.img}`} />
                     <h3>{service.service}</h3>
                     <p className="text-muted">
-                        {service.description}
+                        {service.description.substring(0, 80) + '...'}
                     </p>
                 </div>
             </Link>
