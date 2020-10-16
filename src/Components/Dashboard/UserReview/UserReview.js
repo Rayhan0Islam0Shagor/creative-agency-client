@@ -50,7 +50,7 @@ const UserReview = () => {
             <div className="col-md-10 col-sm-12 container-fluid">
                 <DashboardHeader title={'Review'} />
                 <div style={{ backgroundColor: "#E5E5E5", height: "100vh" }}>
-                    <form className="w-50 p-5" onSubmit={handleSubmit(onSubmit)}>
+                    <form className="w-75 p-5" onSubmit={handleSubmit(onSubmit)}>
                         <input required className="form-control" name="name" defaultValue={(loggedInUser.name || loggedUser.name)} ref={register({ required: true })} />
                         {errors.name && <span className="text-danger">name is required</span>}
                         <br />

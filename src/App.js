@@ -26,7 +26,6 @@ function App() {
     category: ''
   });
 
-
   return (
     <UserContext.Provider value={{ userInfo: [loggedInUser, setLoggedInUser] }}>
       <Router>

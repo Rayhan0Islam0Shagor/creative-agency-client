@@ -11,7 +11,7 @@ const ListedService = () => {
             </div>
             <div className="col-md-10 col-sm-12">
                 <div className="container-fluid p-3">
-                    <DashboardHeader title={'List of User'} />
+                    <DashboardHeader title={'Ordered Services'} />
                     <AllServiceTable />
                 </div>
             </div>

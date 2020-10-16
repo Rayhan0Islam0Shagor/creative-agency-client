@@ -28,7 +28,7 @@ const Sidebar = () => {
     const adminEmail = (loggedInUser.email || loggedUser.email);
 
     useEffect(() => {
-        fetch(`https://infinite-mesa-16282.herokuapp.com/isAdmin?email=${adminEmail}`)
+        fetch('https://infinite-mesa-16282.herokuapp.com/isAdmin?email=' + adminEmail)
             .then(res => res.json())
             .then(data => {
                 if (data.length > 0) {
@@ -44,24 +44,23 @@ const Sidebar = () => {
             })
     }, [])
 
-
-    // not working, need to clear token from application console
     const handleLoggedOut = () => {
-        firebase.auth()
-            .signOut()
-            .then(() => {
-                setLoggedInUser({})
-                sessionStorage.getItem('')
-                history.push('/home')
-            })
-            .catch(error => {
+        alert('not working, need to clear token from application console')
+        // firebase.auth()
+        //     .signOut()
+        //     .then(() => {
+        //         setLoggedInUser({})
+        //         sessionStorage.getItem('')
+        //         history.push('/home')
+        //     })
+        //     .catch(error => {
 
-            });
+        //     });
     }
 
 
     return (
-        <div className="sidebar d-flex flex-column justify-content-between col-md-3 py-5 px-4" style={{ height: "100vh" }}>
+        <div className="sidebar d-flex flex-column justify-content-between py-5 px-4" style={{ height: "100vh" }}>
             <ul className="list-unstyled font-weight-bold">
                 <li className="mb-5">
                     <Link to='/home'>

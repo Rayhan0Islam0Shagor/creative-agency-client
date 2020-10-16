@@ -1,7 +1,7 @@
 import React from 'react';
 import './CustomerSingleService.css'
 
-const Service = ({ info }) => {
+const CustomerSingleService = ({ info }) => {
     return (
         <div className='col-md-5 p-4 m-3 service-card bg-light'>
             <div className="d-flex justify-content-between">
@@ -16,4 +16,4 @@ const Service = ({ info }) => {
     );
 };
 
-export default Service;
+export default CustomerSingleService;

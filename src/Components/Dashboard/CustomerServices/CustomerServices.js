@@ -22,7 +22,7 @@ const CustomerServices = () => {
 
     useEffect(() => {
         service()
-    }, [order])
+    }, [])
 
     const parseJwt = (token) => {
         try {
@@ -50,20 +50,23 @@ const CustomerServices = () => {
                 <Sidebar />
             </div>
             <div className="col-md-10 col-sm-12">
-                <DashboardHeader title={'Service List'} />
-                <div style={{ backgroundColor: "#E5E5E5", paddingBottom: "100px" }} className="row ">
-                    {
-                        order.length === 0 &&
-                        <CircleLoader
-                            css={override}
-                            size={70}
-                            color={"#0278ae"}
-                        />
-                    }
-                    {
-                        order.map(service => <CustomerSingleService key={Math.random()} info={service} />)
-                    }
+                <div className="container-fluid">
+                    <DashboardHeader title={'Service List'} />
+                    <div style={{ backgroundColor: "#E5E5E5", paddingBottom: "100px" }} className="row">
+                        {
+                            order.length === 0 &&
+                            <CircleLoader
+                                css={override}
+                                size={70}
+                                color={"#0278ae"}
+                            />
+                        }
+                        {
+                            order.map(service => <CustomerSingleService key={Math.random()} info={service} />)
+                        }
+                    </div>
                 </div>
+
             </div>
         </section>
     );

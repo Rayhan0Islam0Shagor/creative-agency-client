@@ -59,10 +59,10 @@ const OrderList = () => {
             <div className="col-md-2 col-sm-12">
                 <Sidebar />
             </div>
-            <div className="col-md-10 col-sm-12">
+            <div className="col-md-10 container-fluid col-sm-12">
                 <DashboardHeader title={'Order'} />
                 <div style={{ backgroundColor: "#E5E5E5", paddingBottom: "100px" }}>
-                    <form className="w-50 p-5" onSubmit={handleSubmit(onSubmit)}>
+                    <form className="w-75 p-5" onSubmit={handleSubmit(onSubmit)}>
                         <input className="form-control" defaultValue={(loggedInUser.name || loggedUser.name)} required name="name" placeholder="Your Name/ Company Name" ref={register()} />
                         <br />
 

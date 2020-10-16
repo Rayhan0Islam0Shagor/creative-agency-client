@@ -4,7 +4,7 @@ const Feedback = ({ feedback }) => {
 
     return (
         <div className="col-md-4">
-            <div className="m-2 p-4 pt-5 custom-card">
+            <div className="m-2 p-4 pt-5 review-card">
                 <div className="d-flex mb-3">
                     <div>
                         <img className="rounded-circle" height="80px" width="80px" src={feedback.photo} alt="" />

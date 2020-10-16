@@ -41,8 +41,8 @@ const AddService = () => {
             </div>
             <div className="col-md-10">
                 <DashboardHeader title={'Add a Service'} />
-                <div style={{ backgroundColor: "#E5E5E5", height: "100vh" }}>
-                    <section style={{ backgroundColor: "white" }}>
+                <div className="pl-5 pt-5 pr-5" style={{ backgroundColor: "#E5E5E5", paddingBottom: "110px" }}>
+                    <section style={{ backgroundColor: "white", borderRadius: "10px" }}>
                         <form onSubmit={handleSubmit(onSubmit)} className="row p-5 container">
                             <div className="col-md-6 col-sm-12">
                                 <label className="font-weight-bold" htmlFor="">Service Title</label>

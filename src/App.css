@@ -5,7 +5,8 @@
   font-weight: 600;
 }
 .brand-btn:hover{
-  background-color: rgb(112, 240, 240);
+  background-color: #0f3057;
+  color: white;
   font-weight: 600;
 }
 .navLink{

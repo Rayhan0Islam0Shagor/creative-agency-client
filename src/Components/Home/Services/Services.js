@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Service from '../Service/Service';
 import { css } from "@emotion/core";
-import { FadeLoader, PropagateLoader } from 'react-spinners';
+import { DotLoader, FadeLoader, PropagateLoader } from 'react-spinners';
 
 const override = css`
   display: block;
@@ -34,9 +34,9 @@ const Services = () => {
             <div className="row mt-5 d-flex justify-content-around mb-5">
                 {
                     products.length === 0 &&
-                    <FadeLoader
+                    <DotLoader
                         css={override}
-                        size={150}
+                        size={80}
                         color={"#0f3057"}
                     />
                 }

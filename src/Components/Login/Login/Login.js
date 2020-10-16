@@ -16,7 +16,7 @@ const Login = () => {
     const [loggedInUser, setLoggedInUser] = userInfo;
     const history = useHistory();
     const location = useLocation();
-    const { from } = location.state || { from: { pathname: loggedInUser ? '/adminPenal' : '/customerDashboard' } };
+    let { from } = location.state || { from: { pathname: "/" } };
     if (firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);
     }
@@ -29,18 +29,33 @@ const Login = () => {
                 const signedInUser = { name: displayName, email: email, photo: photoURL };
                 setLoggedInUser(signedInUser);
                 storeAuthToken();
-                history.replace(from)
+                fetch('https://infinite-mesa-16282.herokuapp.com/isAdmin?email=' + email)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.length > 0) {
+                            setLoggedInUser(signedInUser);
+                            storeAuthToken();
+                            history.replace('/adminPenal')
+                        }
+                        else {
+                            setLoggedInUser(signedInUser);
+                            storeAuthToken();
+                            history.replace('/customerDashboard')
+                        }
+                    })
             })
             .catch(error => {
                 const errorMessage = error.message;
+                alert('something went wrong')
             });
     }
+
 
     const storeAuthToken = () => {
         firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
             .then(function (idToken) {
                 sessionStorage.setItem('token', idToken);
-                history.replace(from);
+
             })
             .catch(function (error) {
 
@@ -59,7 +74,7 @@ const Login = () => {
                 <div style={{ height: "500px", border: '1px solid gray', borderRadius: "10px" }}
                     className="bg-light container align-items-center d-flex w-50 mt-5"
                 >
-                    <div className="text-center w-100 p-5">
+                    <div className="text-center w-100">
                         <h2 className="font-weight-bold mb-3">Login With</h2>
                         <button onClick={handleGoogleSignIn} style={{ background: "#ebecf1" }} className="btn rounded-pill w-100">
                             <img className="mr-2" height="20px" width="20px" src={googleImg} alt="" />
