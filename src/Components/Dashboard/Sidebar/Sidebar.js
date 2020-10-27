@@ -4,9 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faServer, faCommentAlt, faSignOutAlt, faUserPlus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../../images/logos/logo.png';
 import './Sidebar.css';
-import * as firebase from "firebase/app";
-import "firebase/auth";
-import firebaseConfig from '../../Login/Login/firebase.config';
 import { useContext } from 'react';
 import { UserContext } from '../../../App';
 
